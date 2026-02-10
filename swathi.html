@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Surprise for Suriya ❤️</title>
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#0d1b2a,#1b263b,#415a77);
+    font-family:Arial, sans-serif;
+    overflow:hidden;
+}
+
+/* CENTER CARD */
+.card{
+    background:rgba(0,0,0,0.9);
+    padding:40px;
+    border-radius:20px;
+    text-align:center;
+    width:320px;
+    color:white;
+    z-index:1000; /* IMPORTANT (above hearts) */
+}
+
+/* BUTTON CLEAR BIG */
+button{
+    margin-top:15px;
+    padding:14px 30px;
+    font-size:18px;
+    border:none;
+    border-radius:30px;
+    background:linear-gradient(45deg,#ff4b7d,#4cc9f0);
+    color:white;
+    cursor:pointer;
+}
+
+/* NOTES */
+.note{
+    position:absolute;
+    background:white;
+    color:black;
+    padding:10px 14px;
+    border-radius:8px;
+    font-size:14px;
+    animation:fade 4s forwards;
+    z-index:5;
+}
+
+@keyframes fade{
+    0%{opacity:1;}
+    100%{opacity:0;}
+}
+
+/* HEARTS BEHIND */
+.heart{
+    position:absolute;
+    bottom:-20px;
+    font-size:20px;
+    animation:float 6s linear infinite;
+    z-index:1; /* behind button */
+}
+
+@keyframes float{
+    0%{transform:translateY(0);}
+    100%{transform:translateY(-100vh);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h2>Hi Suriya ❤️</h2>
+    <p>Click below for your surprise</p>
+    <button onclick="startSurprise()">🎁 Surprise</button>
+</div>
+
+<script>
+
+const messages=[
+"You're my favorite person ❤️",
+"My life = better with you 💙",
+"Thank you for everything",
+"I love you Suriya 💌",
+"console.log('Forever us');"
+];
+
+function startSurprise(){
+    messages.forEach((text,i)=>{
+        setTimeout(()=>{
+            const note=document.createElement("div");
+            note.className="note";
+            note.innerText=text;
+            note.style.left=Math.random()*80+"vw";
+            note.style.top=Math.random()*80+"vh";
+            document.body.appendChild(note);
+            setTimeout(()=>note.remove(),4000);
+        }, i*600);
+    });
+}
+
+/* hearts */
+function heart(){
+    const h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML=Math.random()>0.5?"❤️":"💙";
+    h.style.left=Math.random()*100+"vw";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
+}
+setInterval(heart,300);
+
+</script>
+
+</body>
+</html>
